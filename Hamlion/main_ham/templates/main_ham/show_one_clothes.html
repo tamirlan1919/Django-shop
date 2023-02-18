@@ -1,0 +1,136 @@
+{% extends 'main_ham/index.html' %}
+
+{% block tovars %}
+
+<section class="tovars">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="main_show">
+
+                    <img class="tovar_show" src="{{for_man.image_tovar.url}}" alt="">
+                    <h2>Информация о товаре</h2>
+                    <div class="main-info-tovar">
+
+                        <div class="art-city">
+                            <div class="art">
+                                <p class="detail-tovar">Артикул</p>
+                                <p>{{for_man.articul_tovar}}</p>
+                            </div>
+                            <div class="city">
+                                <p class="detail-tovar">Страна</p>
+                                <p>{{for_man.country}}</p>
+                            </div>
+                        </div>
+                        <div class="sostav-color">
+                            <div class="sostav">
+                                <p class="detail-tovar">Состав</p>
+                                <p>{{for_man.sostav_tovar}}</p>
+                            </div>
+                            <div class="color">
+                                <p class="detail-tovar">Цвет</p>
+                                <p>{{for_man.color}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="myresult" class="img-zoom-result"></div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="main_show">
+                    <div class="info-tovars">
+                         {% if for_man %}
+
+                      <p class="oblast">{{for_man.double_table.persons}} -> {{for_man.double_table.category}}</p>
+                        {% endif %}
+                        <p class="page_title">{{for_man.name_tovar}}</p>
+
+                        <p class="page_about">{{for_man.about_the_tovar}}</p>
+                        <p class="page_price">{{for_man.price}} </p>
+
+                        <div class="size">
+                            <p>Размер {{for_man.size}}</p>
+                            <p>Цвет {{for_man.color}}</p>
+
+
+
+                        <div class="butt">
+
+                              {% if request.user.is_authenticated %}
+
+                            <form action="" method="POST" onclick="change(); return true;" >
+
+                                     {% csrf_token %}
+                              {% if id_clothes in id_cor and acc in users_cor %}
+                                <button  type = "input" name = "delete_btn" value="delete_btn" class="add_bag" id="add_btn">Убрать из корзины</button>
+                              {% else %}
+                                <button  type = "input" name = "add_btn" value="add_btn" class="add_bag" id="add_btn">Добавить в корзину</button>
+
+
+                              {% endif %}
+
+                               {% if id_clothes in idd and acc in userss %}
+
+                                <button class="add-to-favorites" type="submit" name = "delete" data-product-id="{{ product.id }}" value="delete"><i class="bi bi-heart-fill hey-fill"></i></button>
+                                
+                                {% else %}
+                                <button class="delete-to-favorites" type="submit" name = "create" data-product-id="{{ product.id }}" value="create"><i class="bi bi-heart hey-fill"></i></button>
+
+                                {% endif %}
+            
+
+                             
+                            
+
+
+                                </form>
+                                {% else %}
+                                    <button class="add_bag"><a href="{% url 'login' %}" class="download">Добавить в корзину</a></button>
+
+                                {% endif %}
+
+                        </div>
+                        </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<script>
+
+  let add_btn = document.getElementById('add_btn')
+  add_btn.onclick = function(){
+    add_btn.textContent = 'Товар добавлен'
+  }
+
+    let i = document.querySelector('.bi-heart')
+
+    let button1 = document.getElementById('button1')
+    console.log(button1)
+
+    let button2 = document.getElementById('button2')
+     console.log(button2)
+    function change() {
+        button1.onclick = function () {
+
+            i.classList.remove('bi-heart')
+            i.classList.add('bi-heart-fill')
+        }
+
+        button2.onclick = function () {
+
+            i.classList.remove('bi-heart-fill')
+            i.classList.add('bi-heart')
+        }
+    }
+</script>
+
+
+{% endblock %}
+
+{% block js %}
+
+{% endblock %}

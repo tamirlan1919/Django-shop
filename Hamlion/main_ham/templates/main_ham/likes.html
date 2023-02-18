@@ -1,0 +1,40 @@
+{% extends 'main_ham/index.html' %}
+
+{% block tovars %}
+
+<section class="tovar-likes">
+    <div class="container">
+        <div class="row">
+            <h1>Всего товаров ({{count}})</h1>
+
+                  <section class="tovars">
+           <h1>Избранные товары</h1>
+           <div class="container">
+               <div class="row">
+                     {% for item in tovars %}
+                    {% for j in likes %}
+                        {% if item.id_clothes == j.id and item.accounte == user.username  %}
+                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                       <div class="main">
+                           <a href="{% url 'clothes' j.id %}">
+                               <img src="http://127.0.0.1:8000/media/{{j.image_tovar}}" alt="">
+                               <p>{{j.name_tovar}}</p>
+                               <p class="about_tovar">{{j.about_the_tovar}}</p>
+                               <p class="price_tovar">{{j.price}} </p>
+                           </a>
+                       </div>
+                   </div>
+                                {%endif %}
+                    {% endfor %}
+               {% endfor %}
+               </div>
+           </div>
+       </section>
+
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

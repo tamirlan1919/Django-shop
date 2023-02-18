@@ -1,0 +1,96 @@
+{% extends 'main_ham/index.html' %}
+
+{% block tovars %}
+
+<section class="tovar-corzina">
+    <div class="container">
+        <div class="row">
+            <h1>Корзина > Контакты > Доставка > Оплата</h1>
+            <h2>Корзина</h2>
+
+            <div class="main-tovars-corzina">
+                <div class="tovars-corizna-main">
+                      {% for item in korzina %}
+                {% for j in for_man %}
+                    {% if item.id_clothes == j.id and item.accounte == user.username  %}
+
+           
+            <hr>
+            <div class="col">
+
+                <div class="list-korzina">
+               <div class="img">
+                   <img src="{{j.image_tovar.url}}" alt="">
+               </div>
+                <div class="info-korzina">
+                    <p class="title_korzina">{{j.name_tovar}}</p>
+                    <p class="about_korzina">{{j.about_the_tovar}}</p>
+                    <p class="size_korzina">Размер {{j.size}}</p>
+                </div>
+                <div class="count-korzina">
+                    <button class="minus">-</button>
+                    <p>{{item.count}}</p>
+                    <button class="plus">+</button>
+                </div>
+                <div class="price-korzina">
+                    <p>{{j.price}}</p>
+                </div>
+                <div class="delete-korzina">
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                    <button name="delete" value="delete-{{item.id_clothes}}"><i class="bi bi-trash"></i></button>
+                        </form>
+                </div>
+            </div>
+                </div>
+            <hr>
+            {%endif %}
+                    {% endfor %}
+                        {% endfor %}
+                </div>
+                <div class="right-promo-tovars">
+                                <div class="formalization">
+                <p class="prom">Промокод</p>
+                <div class="promocod">
+                              <input type="text" class="form-control" placeholder="Введите промокод">
+                <button>Применить</button>
+                </div>
+
+                <div class="count-form">
+                    <p>Количество товаров - 4</p>
+
+                </div>
+                <div class="sum">
+                    <p>Итого - <span>57900</span></p>
+
+                </div>
+                                    <div class="oformlenie">
+                                        <div class="total_button_row__7rsiA"><button type="button" class="button_button__cU3wk button_big__7sDc0 button_block__7PIvU button_fill__8i3U_ button_primary__l40A8 button_icon_after__4rbZP button_disabled__I6UnD" disabled=""><span class="button_text__wQRT1">перейти к оформлению</span></button></div>
+                                    </div>
+            </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}
+
+
+{% block js %}
+    <script>
+            let plus = document.querySelectorAll('button.plus')
+
+            function plus_f(){
+                alert('Привет')
+            }
+
+             plus.onclick = plus_f
+
+    </script>
+{% endblock %}
